@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TestingAndroid</string>
+    <string name="msg_firstname_cannot_be_blank">Please enter first name</string>
+    <string name="msg_lastname_cannot_be_blank">Please enter last name</string>
+    <string name="msg_enter_valid_email">Please enter valid email address</string>
+    <string name="msg_enter_correct_password">Please enter correct old password</string>
+    <string name="msg_wrong_email">Wrong email address</string>
+    <string name="msg_enter_valid_password">Please enter password</string>
+    <string name="msg_enter_valid_password_length">Password must be min. 6 characters</string>
+    <string name="msg_enter_valid_confirm_password">Please enter valid confirm password</string>
+</resources>
