@@ -1,35 +1,51 @@
 # AndroidTestingTutorial
 Getting started with Espresso Unit Testing
 
-# Why Testing?
+Why Testing?
+-------------------------------
 testing is the process of evaluation a software item to detect differences between given input and expected output. 
+<br/>
 
-# Categories of Testing
+Categories of Testing
+-------------------------------
 1. Black box testing
 2. White box testing<br> 
 etc... others can be found <a href="http://www.softwaretestinghelp.com/types-of-software-testing/">here</a>
+<br/>
 
-# Black box testing
+Black box testing
+-------------------------------
 Tests are based on requirements and functionality.
+<br/>
 
-# White box testing
+White box testing
+-------------------------------
 Tests are based on coverage of code statements, branches, paths, conditions.
 
-# TDD
-Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: requirements are turned into very specific test cases, then the software is improved to pass the new tests, only.
 
-# Android Testing Tools
+
+TDD
+-------------------------------
+Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: requirements are turned into very specific test cases, then the software is improved to pass the new tests, only.
+<br/>
+
+Android Testing Tools
+-------------------------------
 1. <a href="https://developer.android.com/training/testing/ui-testing/espresso-testing.html">Espresso by google team</a>
 2. <a href="http://robolectric.org/">Roboletric</a> 
 3. <a href="https://appium.io/slate/en/tutorial/android.html?ruby#">Appium</a>
 
 
 
-# Espresso
+Espresso
+-------------------------------
 Mainly focused on UI and Thread idealization, which helps the unit tests to run without worring about api response state
 It checks the threads and waits for ui thread to be idealize which is dismiss progress bar or any event which shows that activity is performing some event.
+<br/>
 
-# Why Espresso
+
+Why Espresso
+-------------------------------
 Other tools like Roboletric is also famous for testing android apps but it has it's own android jar which is our basic android kit classes.
 As google updates their support library often it's hard to keep in update for Roboletric. 
 And to mock the android classes becomes hard with Roboletric.
@@ -86,7 +102,9 @@ public class PerfomClickAndCheckTextError {
  
 Like above I had taken resources.
  
-# Tutorial 1
+Tutorial 1
+-------------------------------
+
 We have started programming with hello world! program and for testing we will do the same. Simple step check the text is on the screen.
 but before that let's check how to <kbd>find view</kbd> from the screen in Espresso
 
@@ -120,7 +138,8 @@ above code checked that screen has some textview having text Hello Floks!
 <br/>
 <br/>
 
-# Tutorial 2
+Tutorial 2
+-------------------------------
 Now that we have successed in finding view and performing checks we will move to step 2 which is perform events like typing and clicking.
 to click
 ````
@@ -129,7 +148,8 @@ onView(withText("Login")).perform(click());
 <br/>
 <br/>
 
-# Tutorial 3
+Tutorial 3
+-------------------------------
 Merge click and checks in one 
 ````
  onView(withId(R.id.btnLoginButton)).perform(click());
@@ -138,7 +158,8 @@ Merge click and checks in one
 <br/>
 <br/>
 
-# Tutorial 4
+Tutorial 4
+-------------------------------
 open activity with data in bundle as it's important to pass data with activity
 
 you want to check activity with custom data
@@ -177,7 +198,8 @@ public class PassDataInActivityTest {
 ````
 
 
-# Tutorial 5
+Tutorial 5
+-------------------------------
 Responding to external intents like gallery picks
 It's hard to control external apps as with device applications can have different views so it's not steady like your UI. in this condition what you can do is develop dependency injected code where you can mock the intents results or you can give result of intents in testing.
 
