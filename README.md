@@ -176,3 +176,40 @@ public class PassDataInActivityTest {
 }
 ````
 
+
+#Tutorial 5
+Responding to external intents like gallery picks
+It's hard to control external apps as with device applications can have different views so it's not steady like your UI. in this condition what you can do is develop dependency injected code where you can mock the intents results or you can give result of intents in testing.
+
+Let's check without DI(Dependency Injection)
+-----------------
+
+For this you need to have espresso intents dependency in build.gradle file
+````
+androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2.2', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+})
+````
+
+excludes are important to exclude support libraries inside the espresso and use libs what you have included.
+
+Now after dependency added we can move on to the main course which is to mock the intent results.
+<br/>
+
+2 things to keep in mind is <kbd>intending</kbd> and <kbd>intended</kbd>
+1. Intending
+It is used for specifying Espresso that when unit test wants to open this type of intent please respond with intended result which i'm giving you to give.
+</br>
+2. Intended
+It is used to check if the event intended to open some activity or package? we can check that thing by this.
+
+```
+Intent resultData = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+resultData.setData(Uri.parse(("content://media/external/images/media/162")));
+Matcher<Intent> MediaPickIntent = allOf(hasAction(Intent.ACTION_PICK), hasData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
+Intents.init();
+intending(MediaPickIntent).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, resultData));
+```
+
+In above example we have action pick event matcher which gives espresso hint that i'm finding this intent and by initlizing the intent we are starting intent checks for every intents.
+while intending tells that when I intend to do respond with the intent i'm giving.

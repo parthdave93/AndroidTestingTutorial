@@ -1,5 +1,6 @@
 package com.testingandroid.login;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
 import android.support.annotation.DrawableRes;
@@ -79,4 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         return false;
     }
     
+    public void onGalleryPickClick(View view){
+        startActivity(new Intent(this,ImageFromGalleryActivity.class));
+    }
 }
