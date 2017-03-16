@@ -109,8 +109,8 @@ We have started programming with hello world! program and for testing we will do
 but before that let's check how to <kbd>find view</kbd> from the screen in Espresso
 
 To check there is 2 steps:
-1. find view on screen
-2. check if exists or displayed
+1. Find view on screen
+2. Check if exists or displayed
 <br/>
 
 Find view on screen
