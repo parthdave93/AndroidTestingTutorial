@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
-            android:id="@+id/btnLoginButton"
+            android:id="@+id/btnGalleryPick"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
