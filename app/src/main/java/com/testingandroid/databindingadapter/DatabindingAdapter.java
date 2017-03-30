@@ -18,4 +18,6 @@ public class DatabindingAdapter {
     public static <T> void viewImage(ImageView view, ObservableField<T> filePath) {
         Glide.with(view.getContext()).load("file://" + filePath.get()).placeholder(R.drawable.ic_user_vector).error(R.drawable.ic_user_vector).into(view);
     }
+    
+    
 }

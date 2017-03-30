@@ -83,21 +83,21 @@ Now before going any further with real test code other things to mention here is
 
 ````
 
-@RunWith(AndroidJUnit4.class)
-public class PerfomClickAndCheckTextError {
+    @RunWith(AndroidJUnit4.class)
+    public class PerfomClickAndCheckTextError {
     
-    @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class, true);
+        @Rule
+        public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class, true);
     
-    //To get resources in testing
+        //To get resources in testing
         Resources resources;
         
-    @Before
-    public void initThingsHere() {
+        @Before
+        public void initThingsHere() {
             //do stuff like database or preference or image copying here
-        resources = InstrumentationRegistry.getTargetContext().getResources();
+            resources = InstrumentationRegistry.getTargetContext().getResources();
+        }
     }
-}
 ````
  
 Like above I had taken resources.
@@ -129,7 +129,7 @@ To check we have <kbd>check()</kbd> method in which we will give matcher which w
 
 So we have 
 ````
-onView(withText("Hello Floks!")).check(matches(isDisplayed()));
+    onView(withText("Hello Floks!")).check(matches(isDisplayed()));
 ````
 
 above code checked that screen has some textview having text Hello Floks!
@@ -143,7 +143,7 @@ Tutorial 2
 Now that we have successed in finding view and performing checks we will move to step 2 which is perform events like typing and clicking.
 to click
 ````
-onView(withText("Login")).perform(click());
+    onView(withText("Login")).perform(click());
 ````
 <br/>
 <br/>
@@ -152,8 +152,8 @@ Tutorial 3
 -------------------------------
 Merge click and checks in one 
 ````
- onView(withId(R.id.btnLoginButton)).perform(click());
- onView(withId(R.id.edUsername)).check(matches(hasErrorText(resources.getString(R.string.msg_enter_valid_email))));
+    onView(withId(R.id.btnLoginButton)).perform(click());
+    onView(withId(R.id.edUsername)).check(matches(hasErrorText(resources.getString(R.string.msg_enter_valid_email))));
 ````
 <br/>
 <br/>
@@ -166,35 +166,35 @@ you want to check activity with custom data
 so before writing test if 
 
 ````
-@RunWith(AndroidJUnit4.class)
-public class PassDataInActivityTest {
+    @RunWith(AndroidJUnit4.class)
+    public class PassDataInActivityTest {
     
-    @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class, true) {
-        @Override
-        protected Intent getActivityIntent() {
-            Log.d(PassDataInActivityTest.class.getCanonicalName(), "getActivityIntent() called");
-            Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            Intent intent = new Intent(targetContext, LoginActivity.class);
-            intent.putExtra("testingcheck", true);
-            return intent;
+        @Rule
+        public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class, true) {
+            @Override
+            protected Intent getActivityIntent() {
+                Log.d(PassDataInActivityTest.class.getCanonicalName(), "getActivityIntent() called");
+                Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+                Intent intent = new Intent(targetContext, LoginActivity.class);
+                intent.putExtra("testingcheck", true);
+                return intent;
+            }
+        };
+    
+    
+        @Before
+        public void initThingsHere() {
+            //do stuff like database or preference or image copying here
         }
-    };
     
-    
-    @Before
-    public void initThingsHere() {
-        //do stuff like database or preference or image copying here
+        @Test
+        public void checkBlankEmailError() {
+            //to check view on screen
+            Bundle bundle = mActivityTestRule.getActivity().getIntent().getExtras();
+            assertThat(bundle.getBoolean("testingcheck"), is(true));
+            System.out.println("testingcheck:" + bundle.getBoolean("testingcheck"));
+        }
     }
-    
-    @Test
-    public void checkBlankEmailError() {
-        //to check view on screen
-        Bundle bundle = mActivityTestRule.getActivity().getIntent().getExtras();
-        assertThat(bundle.getBoolean("testingcheck"), is(true));
-        System.out.println("testingcheck:" + bundle.getBoolean("testingcheck"));
-    }
-}
 ````
 
 
@@ -208,9 +208,9 @@ Let's check without DI(Dependency Injection)
 
 For this you need to have espresso intents dependency in build.gradle file
 ````
-androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2.2', {
-    exclude group: 'com.android.support', module: 'support-annotations'
-})
+    androidTestCompile ('com.android.support.test.espresso:espresso-intents:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 ````
 
 excludes are important to exclude support libraries inside the espresso and use libs what you have included.
@@ -226,12 +226,64 @@ It is used for specifying Espresso that when unit test wants to open this type o
 It is used to check if the event intended to open some activity or package? we can check that thing by this.
 
 ```
-Intent resultData = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-resultData.setData(Uri.parse(("content://media/external/images/media/162")));
-Matcher<Intent> MediaPickIntent = allOf(hasAction(Intent.ACTION_PICK), hasData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
-Intents.init();
-intending(MediaPickIntent).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, resultData));
+    Intent resultData = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+    resultData.setData(Uri.parse(("content://media/external/images/media/162")));
+    Matcher<Intent> MediaPickIntent = allOf(hasAction(Intent.ACTION_PICK), hasData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
+    Intents.init();
+    intending(MediaPickIntent).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, resultData));
 ```
 
 In above example we have action pick event matcher which gives espresso hint that i'm finding this intent and by initlizing the intent we are starting intent checks for every intents.
 while intending tells that when I intend to do respond with the intent i'm giving.
+
+
+Tutorial 6
+-----------------------------------------------
+Espresso works like charm for views with view hierarchy but it's difficult to find if view is not bound by viewgroup like google map.
+
+It's hard to find marker in map as it's part of google map but not actual viewgroup so to perform the click event on google map marker what we can do here is
+Use UiAutomator.
+
+UiAutomator is a library which uses accessiblity nodes to determine the views and performs assertions or actions upon that.
+
+add UiAutomator in build.gradle
+````
+
+    androidTestCompile("com.android.support.test.uiautomator:uiautomator-v18:2.1.1", {
+        exclude group: "com.android.support", module: "support-annotations"
+    })
+
+````
+
+After adding in build.gradle your ready to go
+We will create map activity for testing this feature.
+now to use UiAutomator we need to start with finding UIDevice.
+
+```
+    UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+```
+and to find the marker we need to find marker view or in UiAutomator world it is UiSelector.
+
+````
+    UiObject marker = mDevice.findObject(new UiSelector().descriptionContains("Marker in Sydney"));
+````
+
+in above we are finding the view or object which has "Marker in sydney" as their description. and our marker had one.
+once we found the object we can perform click operation.
+
+this is easy to find marker as it is bound to node but info window has been drawn to canvas so it can not be clicked and i had used a trick to click on info window.
+basically info window is drawn above marker icon and so i already got marker object so i had taken marker bounds and performed click on it.
+
+
+````
+        try {
+            marker.click();
+            marker.clickTopLeft();
+            Rect rects = marker.getBounds();
+            mDevice.click(rects.centerX(), rects.top - 30);
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        }
+````
+
+If you do like the Tutorials please rate this repo and do share your own testing class or methodology.

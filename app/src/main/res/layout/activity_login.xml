@@ -70,8 +70,20 @@
             android:layout_height="0dp"
             android:layout_marginTop="56dp"
             android:text="Gallery"
+            style="@style/Button.selector_btn_yellow"
             android:onClick="onGalleryPickClick"
             app:layout_constraintTop_toBottomOf="@+id/edPassword"
+            tools:layout_editor_absoluteX="127dp"/>
+
+        <Button
+            android:id="@+id/btnMapButton"
+            android:layout_width="130dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="56dp"
+            android:text="Map"
+            style="@style/Button.selector_btn_yellow"
+            android:onClick="onMapClick"
+            app:layout_constraintTop_toBottomOf="@+id/btnGalleryButton"
             tools:layout_editor_absoluteX="127dp"/>
 
     </android.support.constraint.ConstraintLayout>

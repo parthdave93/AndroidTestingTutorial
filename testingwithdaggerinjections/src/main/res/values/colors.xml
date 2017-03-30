@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="btn_selector_btn_red_selected">#80FFFF00</color>
+    <color name="btn_selector_btn_red">#FFFF00</color>
+</resources>

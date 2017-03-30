@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.testingandroid.R;
 import com.testingandroid.databinding.ActivityLoginBinding;
+import com.testingandroid.map.MapActivity;
 import com.testingandroid.model.LoginModel;
 
 import java.util.regex.Matcher;
@@ -24,12 +25,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loginModel = new LoginModel();
-    
-        activityLoginBinding = DataBindingUtil.setContentView(this,R.layout.activity_login);
+        
+        activityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         activityLoginBinding.setLoginModel(loginModel);
     }
     
-    public void onLoginClick(View view){
+    public void onLoginClick(View view) {
         if (checkBlank(loginModel.username)) {
             setError(activityLoginBinding.edUsername, getString(R.string.msg_enter_valid_email));
         } else if (!isValidEmail(activityLoginBinding.edUsername)) {
@@ -76,11 +77,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     
-    public boolean noInternetConnection(){
+    public boolean noInternetConnection() {
         return false;
     }
     
-    public void onGalleryPickClick(View view){
-        startActivity(new Intent(this,ImageFromGalleryActivity.class));
+    public void onGalleryPickClick(View view) {
+        startActivity(new Intent(this, ImageFromGalleryActivity.class));
+    }
+    
+    public void onMapClick(View view) {
+        startActivity(new Intent(this, MapActivity.class));
     }
 }

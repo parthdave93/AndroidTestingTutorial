@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.testingandroid.login.LoginActivity;
 
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -29,10 +30,12 @@ public class PerformClickOperation {
         //do stuff like database or preference or image copying here
     }
     
-    @Test
+    @Test//(timeout = 50)
     public void clickOnButton() {
         //to check view on screen
+//        onView(withText("Loggein")).check(matches(isDisplayed()));
         onView(withText("Login")).perform(click());
+        
     }
     
     

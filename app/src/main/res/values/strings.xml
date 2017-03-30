@@ -8,4 +8,7 @@
     <string name="msg_enter_valid_password">Please enter password</string>
     <string name="msg_enter_valid_password_length">Password must be min. 6 characters</string>
     <string name="msg_enter_valid_confirm_password">Please enter valid confirm password</string>
+
+
+    <string name="google_maps_key">AIzaSyCLMsfezV7trM804RcHBH0srRV4wVhjYdQ</string>
 </resources>

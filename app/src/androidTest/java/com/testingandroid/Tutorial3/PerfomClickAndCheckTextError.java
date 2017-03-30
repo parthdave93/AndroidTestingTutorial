@@ -46,6 +46,12 @@ public class PerfomClickAndCheckTextError {
         //to check view on screen
         onView(withId(R.id.btnLoginButton)).perform(click());
         onView(withId(R.id.edUsername)).check(matches(hasErrorText(resources.getString(R.string.msg_enter_valid_email))));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
     }
     
     @Test
@@ -54,6 +60,11 @@ public class PerfomClickAndCheckTextError {
         onView(withId(R.id.edUsername)).perform(typeText("youremail@yopmail.com"), closeSoftKeyboard());
         onView(withId(R.id.btnLoginButton)).perform(click());
         onView(withId(R.id.edPassword)).check(matches(hasErrorText(resources.getString(R.string.msg_enter_valid_password))));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     
 }

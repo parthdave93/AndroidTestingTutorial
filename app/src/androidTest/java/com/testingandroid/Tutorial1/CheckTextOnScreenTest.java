@@ -1,6 +1,7 @@
 package com.testingandroid.Tutorial1;
 
 
+import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -20,7 +21,12 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class CheckTextOnScreenTest {
     
     @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class,true);
+    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class){
+        @Override
+        protected Intent getActivityIntent() {
+            return super.getActivityIntent();
+        }
+    };
     
     
     @Before
@@ -32,6 +38,11 @@ public class CheckTextOnScreenTest {
     public void checkTextOnScreen() {
         //to check view on screen
         onView(withText("Hello Floks!")).check(matches(isDisplayed()));
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     
     

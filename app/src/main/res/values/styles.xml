@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Button">
+        <item name="android:clickable">true</item>
+        <!-- font name -->
+        <!--<item name="typeface">ProximaNovaSemibold</item>-->
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="Button.selector_btn_yellow">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
