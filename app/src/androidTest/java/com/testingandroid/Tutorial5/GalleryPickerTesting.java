@@ -49,7 +49,7 @@ public class GalleryPickerTesting {
         //to check view on screen
     
         Intent resultData = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        resultData.setData(Uri.parse(("content://media/external/images/media/162")));
+        resultData.setData(Uri.parse(("content://media/external/images/media/337663")));
         Matcher<Intent> MediaPickIntent = allOf(hasAction(Intent.ACTION_PICK), hasData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
         Intents.init();
         intending(MediaPickIntent).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, resultData));
