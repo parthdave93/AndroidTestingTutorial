@@ -157,7 +157,12 @@ Merge click and checks in one
 ````
 <br/>
 <br/>
-<embed src="./screenshots/login_error_checks.mp4" autostart="false" height="500" width="500" />
+
+<video width="500" controls>
+  <source src="./screenshots/login_error_checks.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+<br/>
 
 Tutorial 4
 -------------------------------
@@ -204,8 +209,11 @@ Tutorial 5
 Responding to external intents like gallery picks
 It's hard to control external apps as with device applications can have different views so it's not steady like your UI. in this condition what you can do is develop dependency injected code where you can mock the intents results or you can give result of intents in testing.
 We are trying to archive this:
-<embed src="./screenshots/normal_gallery_pick.mp4" autostart="false" height="500" width="500" />
 
+<video width="500" controls>
+  <source src="./screenshots/normal_gallery_pick.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
 
 Let's check without DI(Dependency Injection)
 -----------------
@@ -293,4 +301,7 @@ basically info window is drawn above marker icon and so i already got marker obj
 
 If you do like the Tutorials please rate this repo and do share your own testing class or methodology.
 output:
-<embed src="./screenshots/google_marker_click.mp4" autostart="false" height="500" width="500" />
+<video width="500" controls>
+  <source src="./screenshots/google_marker_click.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
